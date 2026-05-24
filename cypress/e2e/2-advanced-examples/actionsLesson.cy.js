@@ -18,5 +18,6 @@ describe("actions lesson", ()=>{
         cy.get("#country").select("Jordan") // select by text
         cy.get("#country").select("egypt_country") // select by value
         cy.get("#country").select("0") //select by index
+
     })
 })

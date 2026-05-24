@@ -59,9 +59,11 @@ describe("Search for a Product",()=>{
         cy.get('a[href="/products"]').click()
         cy.get("#search_product").type("Blue Top")
         cy.get("#submit_search").click()
+        cy.get(".product-image-wrapper").should("be.visible")
+        cy.url().should("include", "products?search=Blue%20Top")
     })
 
-    it("Validate that a user can add a product to the shopping cart",()=>{
+    it.only("Validate that a user can add a product to the shopping cart",()=>{
         cy.get('a[href="/products"]').click()
         cy.get('a[data-product-id="1"]').first().click()
         cy.contains("Added!").should("be.visible")
@@ -69,8 +71,8 @@ describe("Search for a Product",()=>{
         cy.get('a[href="/product_details/1"]').contains("Blue Top").should("be.visible")
     })
 
-    it.only("Validate that a logged-in user can add a review to a product",()=>{
-         cy.get('a[href="/products"]').click()
+    it("Validate that a logged-in user can add a review to a product",()=>{
+        cy.get('a[href="/products"]').click()
         cy.get('a[href="/product_details/2"]').click()
         cy.get("#name").type("Sally")
         cy.get("#email").type("sallybassam97@gmail.com")
